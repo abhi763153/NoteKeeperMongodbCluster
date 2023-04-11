@@ -3,3 +3,19 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+body{
+  overflow: hidden;
+}
+
+.main{
+  min-height: 87vh;
+  /* background-color: aqua; */
+  padding: 1rem 3rem;
+
+}
+
+.creatBtn :hover{
+  background-color: white;
+  color: #e3f2fd;
+}
