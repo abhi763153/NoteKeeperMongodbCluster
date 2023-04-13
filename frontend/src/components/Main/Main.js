@@ -1,28 +1,35 @@
-import React from 'react'
-import Note from '../Note/Note';
-import notes from '../../data';
+import React, { useState } from 'react'
+import Accordion from '../Accordion/Accordion'
+import Createnote from '../Createnote/Createnote'
 
 
-const Main = () => {
+const Main = (props) => {
+
+
+
+    // const handleShowNotes = () => {
+    //     setActive(true);
+    //     document.getElementById("create-btn").style.display = "block";
+    //     // document.querySelector("#horizontal-line").style.marginBottom = "4rem";
+    // }
+
+
+
+
     return (
         <div className='container main'>
             <h1>Welcome Again! Abhishek Kamti</h1>
-            <hr />
+            <hr id='horizontal-line' />
 
-            <button type="button" class="btn btn-outline-info px-3 py-2">Create Note</button>
+            <button type="button" name="CreateNote" class="btn btn-outline-info px-3 py-2" id='create-btn' onClick={props.showNote}>Create Note</button>
 
-            <div class="accordion my-3" id="accordionExample">
 
-                {
-                    notes.map((note) => {
-                        return <Note id={note.id} title={note.title} des={note.des} />;
-                    })
-                }
+            {props.active ? <Accordion /> : <Createnote />}
 
 
 
 
-            </div>
+
         </div>
     )
 }

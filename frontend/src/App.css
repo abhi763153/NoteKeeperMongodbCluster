@@ -4,9 +4,6 @@
   box-sizing: border-box;
 }
 
-body{
-  overflow: hidden;
-}
 
 .main{
   min-height: 87vh;
@@ -18,4 +15,8 @@ body{
 .creatBtn :hover{
   background-color: white;
   color: #e3f2fd;
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }

@@ -2,7 +2,7 @@ import React from "react";
 // import { Navbar, Container, Nav, NavDropdown, Form } from 'react-bootstrap'
 import './Header.css'
 
-const Header = () => {
+const Header = (props) => {
 
     return (
         <nav className="navbar  navbar-expand-lg navbar-light " style={{ backgroundColor: "#e3f2fd" }}>
@@ -19,7 +19,7 @@ const Header = () => {
                     </form>
                     <ul className="navbar-nav  mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <a className="nav-link active" aria-current="page" href="#">Home</a>
+                            <a className="nav-link active" name="ShowNotes" aria-current="page" href="#" onClick={props.showNote} >Home</a>
                         </li>
 
                         <li className="nav-item dropdown">
