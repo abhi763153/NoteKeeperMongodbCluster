@@ -1,21 +1,22 @@
 const express = require('express');
-const users = require('./data/cars');
+const notes = require('./data/data');
 const port = process.env.PORT || 5000;
 const app = express();
 
 
-
 app.get('/notes', (req, res) => {
-    res.json(users);
+    console.log(typeof notes);
+
+    res.json(notes);
 })
 
 app.get('/notes/:id', (req, res) => {
-
-    const note = users.find((e) => {
-        return e.id === req.params.id;
+    const note = notes.find((e) => {
+        console.log(typeof e.id, typeof req.params.id);
+        return e.id === Number(req.params.id);
     })
 
-    console.log(note);
+
 
     res.json(note);
 
