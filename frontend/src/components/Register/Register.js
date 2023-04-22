@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
-import './Register.css'
+import React, { useState } from 'react';
+import './Register.css';
+import axios from 'axios';
+import Alerts from '../Alerts/Alerts'
 
 const Register = () => {
 
@@ -9,6 +11,10 @@ const Register = () => {
         password: ""
     })
 
+    const [showNotification, setShowNotification] = useState(false);
+    const [message, setMessage] = useState("");
+    const [color, setColor] = useState("");
+
     const handleChange = (event) => {
         const { name, value } = event.target;
 
@@ -16,13 +22,45 @@ const Register = () => {
 
     }
 
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        axios.post('http://localhost:5000/register', form)
+            .then((res) => {
+
+                const { data: { message, isUserAlreadyExist } } = res;
+
+                if (isUserAlreadyExist) {
+                    setShowNotification(true);
+                    setMessage(message);
+                    setColor("danger");
+                }
+                else {
+                    setShowNotification(true);
+                    setMessage(message);
+                    setColor("success");
+                }
+
+                console.log(res)
+            })
+            .catch((err) => { console.error(err) });
+
+        setShowNotification(true);
+
+        setTimeout(() => {
+            setShowNotification(false);
+        }, 3000);
+    }
+
 
 
     return (
         <>
+            {showNotification && <Alerts message={message} color={color} />}
+
             <h1 style={{ textAlign: "center", marginTop: "1rem" }}>Register</h1>
-            {form.name + " " + form.email + " " + form.password}
-            <form className='w-25  form-register'>
+            {/* {form.name + " " + form.email + " " + form.password} */}
+            <form className='w-25  form-register' onSubmit={handleSubmit}>
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Your Name</label>
                     <input type="text" name="name" onChange={handleChange} class="form-control" id="exampleInputName" aria-describedby="emailHelp" />
@@ -42,6 +80,7 @@ const Register = () => {
 
                 <button type="submit" class="btn btn-info px-4">Register</button>
             </form>
+
 
         </>
     )

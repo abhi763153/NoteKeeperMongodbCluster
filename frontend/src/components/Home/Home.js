@@ -3,7 +3,7 @@ import Header from '../Header/Header'
 import Main from '../Main/Main'
 import Footer from '../Footer/Footer'
 
-const Home = () => {
+const Home = (props) => {
 
     const [active, setActive] = useState(true)
 
@@ -23,7 +23,7 @@ const Home = () => {
 
     return (
         <>
-            <Header active={active} showNote={handlyCreateNote} />
+            <Header active={active} showNote={handlyCreateNote} user={props.user} />
             <Main active={active} showNote={handlyCreateNote} />
             <Footer />
         </>
