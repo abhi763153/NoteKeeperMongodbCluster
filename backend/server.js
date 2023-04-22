@@ -1,7 +1,15 @@
 const express = require('express');
 const notes = require('./data/data');
+const mongoose = require('mongoose');
+const dotenv = require('dotenv').config();
 const port = process.env.PORT || 5000;
 const app = express();
+
+
+mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => { console.log("Database connected successfully"); })
+    .catch((err) => { console.error(err); });
+
 
 
 app.get('/notes', (req, res) => {
